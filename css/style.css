@@ -1,0 +1,64 @@
+* {
+	position: relative;
+	box-sizing: border-box;
+}
+
+.main-title {
+	font-family: 'Alfa Slab One', cursive;
+	font-size: 50px;
+	text-align: center;
+}
+
+
+.map {
+	position: relative;
+	height: 300px;
+	width: 100%;
+	background: #ddd;
+}
+
+@media (max-width: 600px) {
+	.map { 
+		height: 200px;
+	}
+}
+
+
+.active-politician {
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  width: 25%;
+}
+
+@media (max-width: 600px) {
+	.active-politician {
+		position: relative;
+		left: auto;
+		top: auto;
+		width: 100%;
+	}
+}
+
+
+.stats-card {
+  top: 20px;
+  right: 30px;
+  position: absolute;
+  width: 25%;
+}
+
+@media (max-width: 600px) {
+	.stats-card {
+		position: relative;
+		left: auto;
+		top: auto;
+		width: 100%;
+	}
+}
+
+
+.active-collection-item {
+	background: #ddd;
+	height: 180px;
+}
