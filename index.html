@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-      <!-- Google Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 
-      <!-- Style sheets -->
-      <link rel="stylesheet" href="css/materialize.css">
-      <link rel="stylesheet" href="css/style.css">
-      
-      <!-- JS File -->
-      <script src="js/app.js"></script>
+        <!-- Style sheets -->
+        <link rel="stylesheet" href="css/materialize.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- JS File -->
+        <script src="js/app.js"></script>
 
     </head>
 
@@ -25,20 +25,23 @@
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!-- MAIN HEADER -->
+    <div class="header-bar row indigo">
+        <div class="col s12 main-title">ShopSearch</div>
+    </div>
 
     <div class="container main-display">
     <!-- Page Content goes here -->
 
-        <!-- MAIN HEADER -->
-        <div class="row">
-            <div class="col s12 main-title">PolitiGeek</div>
-        </div>
+        <p class="intro-copy">
+            Welcome to ShopSearch! Use the search tool below to find and compare the best deals.
+        </p>
 
         <!-- SEARCH BAR -->
         <div class="row">
             <div class="col s12"></div>
             <nav>
-                <div class="nav-wrapper">
+                <div class="nav-wrapper indigo lighten-2 main-search">
                     <form>
                         <div class="input-field">
                             <input id="search" type="search" required>
@@ -47,71 +50,36 @@
                         </div>
                     </form>
                 </div>
-            </nav>
+           </nav>
         </div>
         
-        <!-- MAP AREA -->
-        <div class="row">
-            <div class="map">GOOGLE MAP</div>
-
-            <div id="active-politician" class="active-politician">
-                <div class="card">
-                    <div class="card-image active-politician-image">
-                        <img src="http://placehold.it/150x50">
-                    </div>
-                    <div class="card-content active-politician-content">
-                        <p>Active politician information will be displayed here</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card stats-card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="http://placehold.it/150x50">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4 stats-title">Card Title<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4 stats-title">Card Title<i class="material-icons right">close</i></span>
-                    <p>Statistical information for candidates/politicians displayed here.</p>
-                </div>
-            </div>
-
-        </div> <!-- END OF GOOGLE MAP DIV -->
-
-
     </div> <!-- END OF MAIN CONTAINER -->
 
 
 
 
-
-
 <div class="container secondary-display">
+<!-- SEARCH TOGGLE AREA -->
     <div class="row">
 
-        <div class="col s7 push-s5">
-            <!-- ELECTION NEWS -->
-            <div class="active-collection-item">
-                ACTIVE COLLECTION ITEM
+        <p class="direction-copy">Select a store</p>
+
+        <div class="col s6">
+            <div class="search-toggle waves-effect waves-block waves-light" id="amazon-card">
+                <div class="">
+                    <img class="activator" src="assets/images/amazonlogo.svg">
+                    <p>Search Amazon</p>
+                </div>
             </div>
         </div>
 
-        <div class="col s5 pull-s7">
-            <div class="collection"> <!-- Add .active to clicked items in js -->
-                <a href="#!" class="collection-item">Election District News</a>
-                <a href="#!" class="collection-item">Voter Registration</a> 
-                <a href="#!" class="collection-item">Trending</a>
-                <a href="#!" class="collection-item">Reddit Discussion</a>
+        <div class="col s6">
+            <div class="search-toggle waves-effect waves-block waves-light" id="ebay-card">
+                <img class="activator" src="assets/images/ebaylogo.svg">
+                <p>Search eBay</p>
             </div>
-            
         </div>
-    </div>
+    </div> <!-- END OF SEARCH TOGGLE AREA -->
 </div> <!-- END OF SECONDARY DISPLAY -->
 
 

@@ -3,62 +3,78 @@
 	box-sizing: border-box;
 }
 
+body {
+	background: #f0f0ff;
+}
+
 .main-title {
 	font-family: 'Alfa Slab One', cursive;
 	font-size: 50px;
 	text-align: center;
+	color: #fff;
+	transition: box-shadow .25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
+.intro-copy {
+	max-width: 390px;
+	font-size: 18px;
+	font-weight: 200;
+	line-height: 1.4;
+	color: #333;
+	margin: 0 auto;
+	text-align: center;
+}
 
-.map {
-	position: relative;
-	height: 300px;
+.direction-copy {
+	max-width: 390px;
+	font-size: 18px;
+	font-weight: 200;
+	line-height: 1.4;
+	color: #333;
+	margin: 0 auto;
+	text-align: center;
+}
+
+@media (max-width: 425px) {
+	.intro-copy {
+		padding: 0 2%;
+	}
+}
+
+.main-search {
+	margin-top: 28px;
+}
+
+.card-image {
+	padding: 10px;
+}
+
+.search-toggle {
+    margin: 0.8rem 0 1rem 0;
+    background-color: #fff;
+    transition: box-shadow .25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	padding: 10px;
+	min-height: 100px;
+	max-height: 200px;
+	text-align: center;
+}
+
+.search-toggle:active p {
+	text-decoration: none;
+}
+
+.search-toggle p {
+	text-decoration: underline;
+}
+
+.search-toggle img {
+	display: inline-block;
+	min-height: 118px;
+	max-width: 180px;
 	width: 100%;
-	background: #ddd;
 }
 
-@media (max-width: 600px) {
-	.map { 
-		height: 200px;
-	}
-}
-
-
-.active-politician {
-  position: absolute;
-  left: 30px;
-  top: 20px;
-  width: 25%;
-}
-
-@media (max-width: 600px) {
-	.active-politician {
-		position: relative;
-		left: auto;
-		top: auto;
-		width: 100%;
-	}
-}
-
-
-.stats-card {
-  top: 20px;
-  right: 30px;
-  position: absolute;
-  width: 25%;
-}
-
-@media (max-width: 600px) {
-	.stats-card {
-		position: relative;
-		left: auto;
-		top: auto;
-		width: 100%;
-	}
-}
-
-
-.active-collection-item {
-	background: #ddd;
-	height: 180px;
-}
