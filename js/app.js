@@ -18,8 +18,7 @@ $(document).ready(function(){
 
 
 //AJAX CALL FOR AMAZON: ===================================================================================
-// Access Key ID: AKIAIEGVGX2JCEYBVT3A
-// Secret Access Key: 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
+
 
 
 
