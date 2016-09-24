@@ -29,6 +29,8 @@ $(document).ready(function(){
 
 //EVENT LISTENERS: ========================================================================================
 
+$('#login').webuiPopover({url:'#login-form'});
+
 
 // bind to the submit event, then check to see they have selected a shop
 
