@@ -31,6 +31,9 @@ $(document).ready(function(){
 
 $('#login').webuiPopover({url:'#login-form'});
 
+$('.modal-trigger').leanModal();
+  
+
 
 // bind to the submit event, then check to see they have selected a shop
 
