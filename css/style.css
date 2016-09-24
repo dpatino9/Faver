@@ -21,6 +21,12 @@ body {
 	font-family: 'Roboto';
 }
 
+@media (max-width: 768px) {
+	.main-title .name {
+		font-size: 28px;
+	}
+}
+
 .name {
 	position: absolute;
 	left: 50%;
@@ -37,28 +43,29 @@ body {
 	text-align: center;
 }
 
-.direction-copy {
-	max-width: 390px;
-	font-size: 18px;
-	font-weight: 200;
-	line-height: 1.4;
-	color: #333;
-	margin: 0 auto;
-	text-align: center;
-}
-
 @media (max-width: 425px) {
 	.intro-copy {
 		padding: 0 2%;
 	}
 }
 
-.main-search {
-	margin-top: 28px;
+.direction-copy {
+	max-width: 390px;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.4;
+	color: #333;
+	margin: 0 auto;
+	text-align: center;
 }
 
-.card-image {
-	padding: 10px;
+.error-anim {
+	animation-name: grow-shrink;
+	animation-duration: 0.2s;
+}
+
+.main-search {
+	margin-top: 28px;
 }
 
 .search-toggle {
@@ -71,6 +78,10 @@ body {
 	min-height: 100px;
 	max-height: 200px;
 	text-align: center;
+}
+
+.search-toggle:hover {
+	background-color: #c5cae9;
 }
 
 .search-toggle:active p {
@@ -86,5 +97,19 @@ body {
 	min-height: 118px;
 	max-width: 180px;
 	width: 100%;
+}
+
+@keyframes grow-shrink {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.5);
+	}
+
+	100% {
+		transform: scale(1);
+	}
 }
 
