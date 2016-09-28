@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>ShopSearch</title>
+
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
@@ -56,7 +58,7 @@
     <!-- Page Content goes here -->
 
         <p class="intro-copy">
-            Welcome to ShopSearch! Use the search tool below to find and compare the best deals.
+            Welcome to ShopSearch! Use the search tool below to add to your Favorites or compare low retailer prices.
         </p>
 
         <!-- SEARCH BAR -->
@@ -84,39 +86,61 @@
 <!-- SEARCH TOGGLE AREA -->
     <div class="row">
 
-        <div class="direction-copy">Select a store</div>
+        <div class="direction-copy">Search an item and select an action.</div>
 
-        <!-- Amazon Card -->
+        <!-- Favorites Card -->
         <div class="col s6">
-            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="amazon-toggle">
+            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="favorites-toggle">
                 <div class="">
-                    <img class="activator" src="assets/images/amazonlogo.svg">
-                    <p>Search Amazon</p>
+                    <img class="activator" src="assets/images/myfavorites.svg">
+                    <p>Add to My Favorites</p>
                 </div>
             </div>
         </div>
 
-        <!-- Amazon Modal Structure -->
-        <div id="amazon-modal" class="modal modal-fixed-footer">
+        <!-- My Favorites Modal Structure -->
+        <div id="favorites-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>Shop Through Amazon!</h4>
-                <p>Amazon API Results Here</p>
+
+                <!-- My Favorites List Structure -->
+                <h4>My Favorites</h4>
+                <p>Favorites results here.</p>
+
+                <div id="favorites-list"></div>
+
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
             </div>
         </div>
+
         
-        <!-- eBay Card -->
+        <!-- Shop Card -->
         <div class="col s6">
-            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="ebay-toggle">
-                <img class="activator" src="assets/images/ebaylogo.svg">
-                <p>Search eBay</p>
+            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="shop-toggle">
+                <img class="activator" src="assets/images/retailers.svg">
+                <p>Search retailers</p>
             </div>
         </div>
 
+        <!-- Shop 3-Panel Divs -->
+        <div class="shop-panels hidden row">
+            <div class="col s4 shop-panel" id="amazon-panel">
+                Amazon Content Here: 
+            </div>
+
+            <div class="col s4 shop-panel" id="ebay-panel">
+                eBay Content Here:
+            </div>
+
+            <div class="col s4 shop-panel" id="firebase-panel">
+                Local Retailer Content Here: 
+            </div>
+        </div>
+
+
         <!-- eBay Modal Structure -->
-        <div id="ebay-modal" class="modal modal-fixed-footer">
+        <!-- <div id="ebay-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Shop Through eBay!</h4>
                 <p>eBay API Results Here</p>
@@ -124,7 +148,7 @@
             <div class="modal-footer">
                 <div class="modal-action modal-close waves-effect waves-green btn-flat ">Close</div>
             </div>
-        </div>
+        </div> -->
 
     </div> <!-- END OF SEARCH TOGGLE AREA -->
 </div> <!-- END OF SECONDARY DISPLAY -->
