@@ -2,11 +2,12 @@ $(document).ready(function(){
 
 //VARIABLES: ==============================================================================================
 
-var state = {
-	favorites: []
-}
+	var state = {
+		favorites: []
+	}
 
-var favoritesCount = 0;
+	var favoritesCount = 0;
+	var database = firebase.database();
 
 
 
@@ -65,6 +66,87 @@ function ebaySearch(searchTerm) {
 
 
 //AMAZON: =========================================================================================================
+    var amazonUrl = "";
+    var results = "";
+    var totalResults = 10;
+    var i = 0;
+    var j = 10;
+    function sha256(stringToSign, secretKey) {
+      var hex = CryptoJS.HmacSHA256(stringToSign, secretKey);
+      return hex.toString(CryptoJS.enc.Base64);
+    } 
+
+    function timestamp() {
+        var date = new Date();
+        var y = date.getUTCFullYear().toString();
+        var m = (date.getUTCMonth() + 1).toString();
+        var d = date.getUTCDate().toString();
+        var h = date.getUTCHours().toString();
+        var min = date.getUTCMinutes().toString();
+        var s = date.getUTCSeconds().toString();
+
+        if(m.length < 2) { m = "0" + m; }
+        if(d.length < 2) { d = "0" + d; }
+        if(h.length < 2) { h = "0" + h; }
+        if(min.length < 2) { min = "0" + min; }
+        if(s.length < 2) { s = "0" + s}
+
+        var date = y + "-" + m + "-" + d;
+        var time = h + ":" + min + ":" + s;
+        return date + "T" + time + "Z";
+    }
+
+    function getAmazonItemInfo(keyword) {
+        var PrivateKey = "/nmngLta6ifXG0RjOzoICN0cMqRlUp9m9LwlIrOj";
+        var PublicKey = "AKIAIGNV6AJOIUYCURCA";
+        var AssociateTag = "shopsmart093-20";
+
+        var parameters = [];
+        parameters.push("AWSAccessKeyId=" + PublicKey);
+        parameters.push("SearchIndex=All");
+        parameters.push("Keywords=" + encodeURIComponent(keyword));
+        parameters.push("Operation=ItemSearch");
+        parameters.push("ResponseGroup=Images%2CItemAttributes%2COffers");
+        parameters.push("Service=AWSECommerceService");
+        parameters.push("Timestamp=" + encodeURIComponent(timestamp()));
+    	parameters.push("AssociateTag=" + AssociateTag);
+
+        parameters.sort();
+        var paramString = parameters.join('&');
+
+        var signingKey = "GET\n" + "webservices.amazon.com\n" + "/onca/xml\n" + paramString
+        console.log(signingKey);
+        var signature = sha256(signingKey,PrivateKey);
+            signature = encodeURIComponent(signature);
+
+        amazonUrl =  "http://webservices.amazon.com/onca/xml?" + paramString + "&Signature=" + signature;
+        console.log(amazonUrl);
+    }
+	function getData(amazonUrl) {
+		var queryURL = "https://crossorigin.me/"+amazonUrl;
+			$.ajax({url: queryURL, dataType: "xml", method: "GET"}).done(function(response) {
+                results = response;
+                displayData(results,i,j);
+		});
+
+	}
+
+    function displayData(data,i,j) {
+        $("#amazon-panel").empty();
+        var carousel = $("<div class='carousel'>");
+        for(i; i<j; i++) {
+        	var carouselItem = $("<a class='carousel-item'><div class='card'>");
+            carouselItem.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='"+$(data).find("MediumImage URL").eq(i).text()+"'>")
+            carouselItem.append("<div class='card-content'><p>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text())
+            carousel.append(carouselItem);
+        }
+        $("#amazon-panel").append(carousel);
+        $('.carousel').carousel({
+            dist:0,
+            shift:0,
+            padding:20,
+      	});
+    }
 
 
 
@@ -95,6 +177,8 @@ function openDisplay(id) {
 			} else {
 				keyword = $('#search').val().trim();
 				ebaySearch(keyword);
+				getAmazonItemInfo(keyword);
+				getData(amazonUrl);
 				$(".shop-panels").removeClass("hidden");
 				$(".direction-copy").removeClass("red-text");
 				$(".direction-copy").removeClass("error-anim");

@@ -43,7 +43,8 @@
     <div id="login-form" class="webui-popover-content">
         <form action="" method="post">
             <div class="input-field">
-                <input type="text" placeholder="username">
+            <i class="material-icons left">person</i>
+                <input class="validate" type="email" placeholder="Email">
             </div>
             <div class="input-field">
                 <input type="password" placeholder="password">
@@ -179,10 +180,15 @@
     </div>
 </div>
 
-
+    <!-- Load scripts for Amazon url-encoding-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/hmac-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256-min.js"></script>
 
   <!-- Load firebase -->
-  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+  <script src="js/config.js"></script>
   <!-- JS File -->
   <script src="js/app.js"></script>
 </body>
