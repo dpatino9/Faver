@@ -1,0 +1,1 @@
+http://api.walmartlabs.com/v1/items/12417832?apiKey={59hw4jekteu7jxjwkd7ue7ma}&lsPublisherId={Your LinkShare Publisher Id}&format=json
