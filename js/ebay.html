@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>eBay Search Results</title>
+<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<style type="text/css">body { font-family: arial,sans-serif;} </style>
+</head> 
+<body>
+<h1>eBay Search Results</h1>
+<form id="input-area" onsubmit="return false">
+<input id="keyword"></input>
+<input type="submit" id="search">
+</form>
+<div id="results"></div>
+<script type="text/javascript">
+
+var urlfilter = "";
+var keyword = "nintendo wii";
+
+// Appending the API script to the document
+var url = "http://svcs.ebay.com/services/search/FindingService/v1";
+    url += "?OPERATION-NAME=findItemsByKeywords";
+    url += "&SERVICE-VERSION=1.0.0";
+    url += "&SECURITY-APPNAME=DanielMi-projecto-PRD-c2f55bc58-2a0828cd";
+    url += "&GLOBAL-ID=EBAY-US";
+    url += "&RESPONSE-DATA-FORMAT=JSON";
+    url += "&callback=_cb_findItemsByKeywords";
+    url += "&REST-PAYLOAD";
+    url += "&keywords=" + keyword;
+    url += "&paginationInput.entriesPerPage=20";
+    url += urlfilter;
+
+    s=document.createElement('script'); // create script element
+    s.src= url;
+    document.body.appendChild(s);
+
+
+$('#input-area').on('submit', function(){
+  keyword = $('#keyword').val().trim();
+  $('#keyword').val().trim()
+  console.log(keyword);
+
+});
+// Callback for finding items by keyword, creating a table of results
+function _cb_findItemsByKeywords(root) {
+  var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
+  var html = [];
+  html.push('<table width="100%" border="0" cellspacing="0" cellpadding="3"><tbody>');
+  for (var i = 0; i < items.length; ++i) {
+    var item     = items[i];
+    var title    = item.title;
+    var pic      = item.galleryURL;
+    var viewitem = item.viewItemURL;
+    if (null != title && null != viewitem) {
+      html.push('<tr><td>' + '<img src="' + pic + '" border="0">' + '</td>' + 
+      '<td><a href="' + viewitem + '" target="_blank">' + title + '</a></td></tr>');
+    }
+  }
+  html.push('</tbody></table>');
+  document.getElementById("results").innerHTML = html.join("");
+};
+</script>

@@ -1,44 +1,72 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <title>ShopSearch</title>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-      <!-- Google Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-      <!-- Style sheets -->
-      <link rel="stylesheet" href="css/materialize.css">
-      <link rel="stylesheet" href="css/style.css">
-      
-      <!-- JS File -->
-      <script src="js/app.js"></script>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        
+        <!-- JQuery Web Pop-over -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
+        <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+
+        <!-- Style sheets -->
+        <link rel="stylesheet" href="css/materialize.css">
+        <link rel="stylesheet" href="css/style.css">
 
     </head>
 
 <body>
-  <!--Import jQuery before materialize.js-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <!-- Nav Bar -->
+    <nav class="indigo">        
+        <div class="header-bar row indigo">
+        <div class="main-title">
+            <div class="name">ShopSearch</div>
+                <ul class="right">
+                <li><a id="login" href="#">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="login-form" class="webui-popover-content">
+        <form action="" method="post">
+            <div class="input-field">
+            <i class="material-icons left">person</i>
+                <input class="validate" type="email" placeholder="Email">
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="password">
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
 
     <div class="container main-display">
     <!-- Page Content goes here -->
 
-        <!-- MAIN HEADER -->
-        <div class="row">
-            <div class="col s12 main-title">PolitiGeek</div>
-        </div>
+        <p class="intro-copy">
+            Welcome to ShopSearch! Use the search tool below to add to your Favorites or compare low retailer prices.
+        </p>
 
         <!-- SEARCH BAR -->
         <div class="row">
             <div class="col s12"></div>
             <nav>
-                <div class="nav-wrapper">
+                <div class="nav-wrapper indigo lighten-2 main-search">
                     <form>
                         <div class="input-field">
                             <input id="search" type="search" required>
@@ -47,76 +75,122 @@
                         </div>
                     </form>
                 </div>
-            </nav>
+           </nav>
         </div>
         
-        <!-- MAP AREA -->
-        <div class="row">
-            <div class="map">GOOGLE MAP</div>
-
-            <div id="active-politician" class="active-politician">
-                <div class="card">
-                    <div class="card-image active-politician-image">
-                        <img src="http://placehold.it/150x50">
-                    </div>
-                    <div class="card-content active-politician-content">
-                        <p>Active politician information will be displayed here</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card stats-card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="http://placehold.it/150x50">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4 stats-title">Card Title<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4 stats-title">Card Title<i class="material-icons right">close</i></span>
-                    <p>Statistical information for candidates/politicians displayed here.</p>
-                </div>
-            </div>
-
-        </div> <!-- END OF GOOGLE MAP DIV -->
-
-
     </div> <!-- END OF MAIN CONTAINER -->
 
 
 
 
-
-
 <div class="container secondary-display">
+<!-- SEARCH TOGGLE AREA -->
     <div class="row">
 
-        <div class="col s7 push-s5">
-            <!-- ELECTION NEWS -->
-            <div class="active-collection-item">
-                ACTIVE COLLECTION ITEM
+        <div class="direction-copy">Search an item and select an action.</div>
+
+        <!-- Favorites Card -->
+        <div class="col s6">
+
+            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="favorites-toggle">
+
+                <div class="">
+                    <img class="activator" src="assets/images/myfavorites.svg">
+                    <p>Add to My Favorites</p>
+                </div>
+            </div>
+        </div>
+        <!-- Amazon Modal Structure -->
+        <div id="amazon-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Shop Through Amazon!</h4>
+                <p>Amazon API Results Here</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
             </div>
         </div>
 
-        <div class="col s5 pull-s7">
-            <div class="collection"> <!-- Add .active to clicked items in js -->
-                <a href="#!" class="collection-item">Election District News</a>
-                <a href="#!" class="collection-item">Voter Registration</a> 
-                <a href="#!" class="collection-item">Trending</a>
-                <a href="#!" class="collection-item">Reddit Discussion</a>
+        <!-- My Favorites Modal Structure -->
+        <div id="favorites-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+
+                <!-- My Favorites List Structure -->
+                <h4>My Favorites</h4>
+                <p>Favorites results here.</p>
+
+                <div id="favorites-list"></div>
+
             </div>
-            
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+            </div>
         </div>
-    </div>
+
+        
+        <!-- Shop Card -->
+        <div class="col s6">
+            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="shop-toggle">
+                <img class="activator" src="assets/images/retailers.svg">
+                <p>Search retailers</p>
+            </div>
+        </div>
+
+        <!-- Shop 3-Panel Divs -->
+        <div class="shop-panels hidden row">
+            <div class="col s4 shop-panel" id="amazon-panel">
+                Amazon Content Here: 
+            </div>
+
+            <div class="col s4 shop-panel" id="ebay-panel">
+                eBay Content Here:
+            </div>
+
+            <div class="col s4 shop-panel" id="firebase-panel">
+                Local Retailer Content Here: 
+            </div>
+        </div>
+
+
+        <!-- eBay Modal Structure -->
+        <!-- <div id="ebay-modal" class="modal modal-fixed-footer">
+
+            <div class="modal-content">
+                <h4>Shop Through eBay!</h4>
+                <p>eBay API Results Here</p>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-action modal-close waves-effect waves-green btn-flat ">Close</div>
+            </div>
+        </div> -->
+
+
+    </div> <!-- END OF SEARCH TOGGLE AREA -->
 </div> <!-- END OF SECONDARY DISPLAY -->
 
 
+<!-- Modal Structure -->
+<div id="amazon-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
 
+    <!-- Load scripts for Amazon url-encoding-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/hmac-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256-min.js"></script>
 
+  <!-- Load firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+  <script src="js/config.js"></script>
+  <!-- JS File -->
+  <script src="js/app.js"></script>
 </body>
 
 
