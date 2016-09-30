@@ -125,7 +125,15 @@ body {
 
 }
 
+.material-icons {
+    display: inline-block;
+    vertical-align: middle;
+}
 
+.input-field {
+/*	display: inline-block;
+*/    vertical-align: middle;
+}
 
 
 

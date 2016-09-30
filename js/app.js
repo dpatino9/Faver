@@ -2,9 +2,9 @@ $(document).ready(function(){
 
 //VARIABLES: ==============================================================================================
 
-	var state = {
-		favorites: []
-	}
+	// var state = {
+	// 	favorites: []
+	// }
 
 	var favoritesCount = 0;
 	var database = firebase.database();
@@ -226,7 +226,7 @@ $('#login').webuiPopover({url:'#login-form'});
 // Opens My Favorites modal with search item
 $('#favorites-toggle').on('click', function() {
 	console.log("clicking")
-	openShopModal("favorites-modal");
+	openDisplay("favorites-modal");
 });
 
 
@@ -238,13 +238,17 @@ $(document.body).on('click', '.close', function(){
 
 
 // Displays shop panels div
-$("#shop-toggle").on('click', function() {
-	console.log("opening shop toggle");
-	openDisplay("shop-toggle");
-	$("#search").val("");
+// $("#shop-toggle").on('click', function() {
+// 	console.log("opening shop toggle");
+// 	openDisplay("shop-toggle");
+// 	$("#search").val("");
 
-});
+// });
 
+// $("#search-bar").on('submit', function() {
+// 	openDisplay("shop-panels");
+// 	$("#search").val("");
+// });
 
 
 
