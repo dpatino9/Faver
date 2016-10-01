@@ -191,7 +191,7 @@ function openDisplay(id) {
 			}
 			break;
 
-		case 'shop-toggle':
+		case 'submit-button':
 			if ($("#search").val().trim().length == 0) {
 				$(".direction-copy").addClass("red-text");
 				$(".direction-copy").addClass("error-anim");
@@ -246,7 +246,7 @@ $('#login').webuiPopover({url:'#login-form'});
 
 
 // Opens My Favorites modal with search item
-$('#favorites-toggle').on('click', function() {
+$('#favorites-click').on('click', function() {
 	console.log("clicking")
 	openDisplay("favorites-modal");
 });
@@ -259,13 +259,7 @@ $(document.body).on('click', '.close', function(){
 });
 
 
-// Displays shop panels div
-// $("#shop-toggle").on('click', function() {
-// 	console.log("opening shop toggle");
-// 	openDisplay("shop-toggle");
-// 	$("#search").val("");
 
-// });
 
 $("#search-bar").on('submit', function() {
 	// openDisplay("shop-panels");
@@ -273,6 +267,19 @@ $("#search-bar").on('submit', function() {
     ebaySearch(searchterm, ebayParse);
     getAmazonItemInfo(searchterm, getData);
     $("#shop-panels").removeClass("hidden");
+});
+	if ($("#search").val().trim().length <= 1) {
+		$(".direction-copy").addClass("error-anim");
+	} else {
+		var keyword = $('#search').val().trim();
+		ebaySearch(keyword);
+		getAmazonItemInfo(keyword);
+		getData(amazonUrl);
+		$("#shop-panels").removeClass("hidden");
+		$(".direction-copy").removeClass("red-text");
+		$(".direction-copy").removeClass("error-anim");
+	}
+	// $("#search").val("");
 });
 
 

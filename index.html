@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>faver</title>
+        <title>Faver</title>
 
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
 
         <!--Import jQuery before materialize.js-->
         <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
@@ -23,8 +23,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
         <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 
-        <!-- Style sheets -->
-        <link rel="stylesheet" href="css/materialize.css">
         <link rel="stylesheet" href="css/style.css">
 
     </head>
@@ -33,14 +31,22 @@
 
     <!-- Nav Bar -->
     <nav class="indigo">        
-        <div class="header-bar row indigo">
+        <div class="header-bar row indigo darken-4">
         <div class="main-title">
-            <div class="name">faver</div>
+            <div class="name">Faver</div>
                 <ul class="right">
+                <li><a id="favorites-click"><img src="assets/images/favorites-icon.svg" alt="My Favorites"></a></li>
                 <li><a id="login" href="#">Login</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Image Header -->
+    <div class="image-header">
+        <div class="image-header__overlay"></div>
+    </div>
+
+    <!-- Login -->
     <div id="login-form" class="webui-popover-content">
         <form action="" method="post">
             <div class="input-field">
@@ -55,12 +61,14 @@
             </button>
         </form>
     </div>
+    
+    <!-- END OF NAV -->
 
     <div class="container main-display">
     <!-- Page Content goes here -->
 
         <p class="intro-copy">
-            Welcome to ShopSearch! Use the search tool below to add to your Favorites or click to compare low retailer prices.
+            Welcome to ShopSearch! Use the search tool below to compare low retailer prices. 
         </p>
 
         <!-- SEARCH BAR -->
@@ -69,10 +77,12 @@
             <nav>
                 <div class="nav-wrapper indigo lighten-2 main-search">
                     <form id="search-bar" onsubmit="return false">
+                <div class="nav-wrapper grey lighten-1 main-search">
+                    <form id="search-bar" novalidate>
                         <div class="input-field">
                             <input id="search" type="search" required>
                             <label for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons done">done</i>
+                            <i class="material-icons done" id="submit-button">done</i>
                         </div>
                     </form>
                 </div>
@@ -88,10 +98,10 @@
 <!-- SEARCH TOGGLE AREA -->
     <div class="row">
 
-        <div class="direction-copy">Search an item, or add that item to your Favorites.</div>
+        <div class="direction-copy">Search an item, or manage your Favorites.</div>
 
         <!-- Favorites Card -->
-        <div class="col s4 offset-s4">
+        <!-- <div class="col s4 offset-s4">
 
             <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="favorites-toggle">
 
@@ -100,7 +110,7 @@
                     <p>Add to My Favorites</p>
                 </div>
             </div>
-        </div>
+        </div> -->
         
         <!-- My Favorites Modal Structure -->
         <div id="favorites-modal" class="modal modal-fixed-footer">
@@ -108,34 +118,30 @@
 
                 <!-- My Favorites List Structure -->
                 <h4>My Favorites</h4>
-                <p>Favorites results here.</p>
+                <p>Add your Favorite items</p>
 
                 <div id="favorites-list"></div>
 
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
             </div>
         </div>
 
-        
-        <!-- Shop Card -->
-       <!--  <div class="col s6">
-            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="shop-toggle">
-                <img class="activator" src="assets/images/retailers.svg">
-                <p>Search retailers</p>
-            </div>
-        </div> -->
 
         <!-- Shop 3-Panel Divs -->
         <div id="shop-panels" class="hidden row">
-            <div class="col s4 shop-panel" id="amazon-panel">
+            <div class="shop-panel amazon-panel" id="amazon-panel">
+                <div class="amazon-panel__header"></div>
+
             </div>
 
-            <div class="col s4 shop-panel" id="ebay-panel">
+            <div class="shop-panel ebay-panel" id="ebay-panel">
+                <div class="ebay-panel__header"></div>
             </div>
 
-            <div class="col s4 shop-panel" id="firebase-panel">
+            <div class="shop-panel firebase-panel" id="firebase-panel">
+                <div class="firebase-panel__header"></div>
             </div>
         </div>
 
@@ -143,17 +149,6 @@
     </div> <!-- END OF SEARCH TOGGLE AREA -->
 </div> <!-- END OF SECONDARY DISPLAY -->
 
-
-<!-- Modal Structure -->
-<!-- <div id="amazon-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    </div>
-</div> -->
 
     <!-- Load scripts for Amazon url-encoding-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
