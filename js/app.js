@@ -133,13 +133,17 @@ function ebaySearch(searchTerm) {
 
     function displayData(data,i,j) {
         $("#amazon-panel").empty();
-        var carousel = $("<div class='carousel'>");
+        $("#amazon-panel").append($("<div class='shop-panel__header'><img src=\"assets/images/amazonlogo.svg\" /></div>"))
+        var carousel = $("<div class='carousel shop-carousel'>");
         for(i; i<j; i++) {
-        	var carouselItem = $("<a class='carousel-item'><div class='card'>");
-            carouselItem.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='"+$(data).find("MediumImage URL").eq(i).text()+"'>")
-            carouselItem.append("<div class='card-content'><p>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text())
+        	var carouselItem = $("<a class='carousel-item'>");
+        	var carouselCard = $("<div class='card'>");
+            carouselCard.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='"+$(data).find("MediumImage URL").eq(i).text()+"'>")
+            carouselCard.append("<div class='card-content'><p>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text())
+        	carouselItem.append(carouselCard);
             carousel.append(carouselItem);
         }
+
         $("#amazon-panel").append(carousel);
         $('.carousel').carousel({
             dist:0,
@@ -170,7 +174,7 @@ function openDisplay(id) {
 			}
 			break;
 
-		case 'shop-toggle':
+		case 'submit-button':
 			if ($("#search").val().trim().length == 0) {
 				$(".direction-copy").addClass("red-text");
 				$(".direction-copy").addClass("error-anim");
@@ -224,7 +228,7 @@ $('#login').webuiPopover({url:'#login-form'});
 
 
 // Opens My Favorites modal with search item
-$('#favorites-toggle').on('click', function() {
+$('#favorites-click').on('click', function() {
 	console.log("clicking")
 	openDisplay("favorites-modal");
 });
@@ -237,18 +241,24 @@ $(document.body).on('click', '.close', function(){
 });
 
 
-// Displays shop panels div
-// $("#shop-toggle").on('click', function() {
-// 	console.log("opening shop toggle");
-// 	openDisplay("shop-toggle");
-// 	$("#search").val("");
+// Search bar function
+$("#search-bar").on('submit', function(event) {
 
-// });
+	event.preventDefault();
 
-// $("#search-bar").on('submit', function() {
-// 	openDisplay("shop-panels");
-// 	$("#search").val("");
-// });
+	if ($("#search").val().trim().length <= 1) {
+		$(".direction-copy").addClass("error-anim");
+	} else {
+		var keyword = $('#search').val().trim();
+		ebaySearch(keyword);
+		getAmazonItemInfo(keyword);
+		getData(amazonUrl);
+		$("#shop-panels").removeClass("hidden");
+		$(".direction-copy").removeClass("red-text");
+		$(".direction-copy").removeClass("error-anim");
+	}
+	// $("#search").val("");
+});
 
 
 
