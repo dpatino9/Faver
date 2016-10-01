@@ -28,7 +28,7 @@ function ebayParse(root) {
 	for (var i = 0; i < items.length; ++i) {
 		var item     = items[i];
 		var title    = item.title;
-		var pic      = item.galleryURL;
+		var pic      = "https://crossorigin.me/"+item.galleryURL;
 		var viewitem = item.viewItemURL;
 
 		if (null != title && null != viewitem) {
@@ -115,7 +115,7 @@ function ebaySearch(searchTerm, ebayParse) {
         for(i; i<j; i++) {
         	var carouselItem = $("<a class='carousel-item'>");
         	var carouselCard = $("<div class='card hoverable'>");
-            carouselCard.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='"+$(data).find("MediumImage URL").eq(i).text()+"'>")
+            carouselCard.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='https://crossorigin.me/"+$(data).find("MediumImage URL").eq(i).text()+"'>")
             carouselCard.append("<div class='card-content'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><p id='item-name'>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text()+"<div class='fixed-action-btn add-amazon' data-itemno='"+i+"'style='bottom: 135px; right: 13px;'><a class='btn-floating btn-small pink'><i class='large material-icons'>mode_edit");
         	carouselItem.append(carouselCard);
             carousel.append(carouselItem);
