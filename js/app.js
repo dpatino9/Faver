@@ -35,7 +35,7 @@ function ebayParse(root) {
         	var carouselItem = $("<a class='carousel-item'>");
         	var carouselCard = $("<div class='card'>");
             carouselCard.append("<div class='card-image'><a href='"+viewitem+"' target='_blank'><img class='responsive-img' src='"+pic+"'>")
-            carouselCard.append("<div class='card-content'><p>"+title+"<p>"+item)
+            carouselCard.append("<div class='card-content'><p>"+title+"<p>$"+item.sellingStatus[0].currentPrice[0].__value__)
         	carouselItem.append(carouselCard);
             carousel.append(carouselItem);
 		}
