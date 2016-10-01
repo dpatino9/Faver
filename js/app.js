@@ -7,8 +7,8 @@
 
 	var favoritesCount = 0;
 	var database = firebase.database();
-
-
+    var itemName = "";
+    var itemNo = 0;
 
 //INITIALIZE FIREBASE: ====================================================================================
 
@@ -23,7 +23,7 @@ var ebayResults = "";
 function ebayParse(root) {
 	var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
     $("#ebay-panel").empty();
-    $("#ebay-panel").append($("<div class='shop-panel__header'><img src=\"assets/images/ebaylogo.svg\" /></div>"))
+    $("#ebay-panel").append($("<div class='shop-panel__header valign center-block'><img src='assets/images/ebaylogo.svg' /></div>"))
     var carousel = $("<div class='carousel shop-carousel'>");
 	for (var i = 0; i < items.length; ++i) {
 		var item     = items[i];
@@ -33,9 +33,9 @@ function ebayParse(root) {
 
 		if (null != title && null != viewitem) {
         	var carouselItem = $("<a class='carousel-item'>");
-        	var carouselCard = $("<div class='card'>");
+        	var carouselCard = $("<div class='card hoverable'>");
             carouselCard.append("<div class='card-image'><a href='"+viewitem+"' target='_blank'><img class='responsive-img' src='"+pic+"'>")
-            carouselCard.append("<div class='card-content'><p>"+title+"<p>$"+item.sellingStatus[0].currentPrice[0].__value__)
+            carouselCard.append("<div class='card-content'><a href='"+viewitem+"' target='_blank'><p>"+title+"<p>$"+item.sellingStatus[0].currentPrice[0].__value__+"<div class='fixed-action-btn add-ebay' style='bottom: 135px; right: 14px;'><a class='btn-floating btn-small pink'><i class='large material-icons'>mode_edit")
         	carouselItem.append(carouselCard);
             carousel.append(carouselItem);
 		}
@@ -63,20 +63,13 @@ function ebaySearch(searchTerm, ebayParse) {
 	    url += "&SECURITY-APPNAME=DanielMi-projecto-PRD-c2f55bc58-2a0828cd";
 	    url += "&GLOBAL-ID=EBAY-US";
 	    url += "&RESPONSE-DATA-FORMAT=JSON";
-	    // url += "&callback=_cb_findItemsByKeywords";
 	    url += "&REST-PAYLOAD";
 	    url += "&keywords=" + keyword;
 	    url += "&paginationInput.entriesPerPage=10";
 	    url += urlfilter;
 
-	    // s=document.createElement('script'); // create script element
-	    // s.src= url;
-	    // document.body.appendChild(s);
             $.ajax({url: url, method: "GET"}).done(function(response) {
                 ebayResults = response;
-                // console.log(response);
-                // var responseObject = JSON.parse(response);
-                // console.log(responseObject);
                 ebayParse(JSON.parse(response));
         });
 }
@@ -117,13 +110,13 @@ function ebaySearch(searchTerm, ebayParse) {
     }
     function displayData(data,i,j) {
         $("#amazon-panel").empty();
-        $("#amazon-panel").append($("<div class='shop-panel__header'><img src=\"assets/images/amazonlogo.svg\" /></div>"))
+        $("#amazon-panel").append($("<div class='shop-panel__header valign center-block'><img src='assets/images/amazonlogo.svg' /></div>"))
         var carousel = $("<div class='carousel shop-carousel'>");
         for(i; i<j; i++) {
         	var carouselItem = $("<a class='carousel-item'>");
-        	var carouselCard = $("<div class='card'>");
+        	var carouselCard = $("<div class='card hoverable'>");
             carouselCard.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='"+$(data).find("MediumImage URL").eq(i).text()+"'>")
-            carouselCard.append("<div class='card-content'><p>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text())
+            carouselCard.append("<div class='card-content'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><p id='item-name'>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text()+"<div class='fixed-action-btn add-amazon' data-itemno='"+i+"'style='bottom: 135px; right: 13px;'><a class='btn-floating btn-small pink'><i class='large material-icons'>mode_edit");
         	carouselItem.append(carouselCard);
             carousel.append(carouselItem);
         }
@@ -190,9 +183,9 @@ function openDisplay(id) {
 		case 'favorites-modal':
 			$('#favorites-modal').openModal();
 			console.log("opening favorites modal");
-			if ($("#search").val().trim().length !== 0) {
-				addFavorite();
-			}
+			// if ($("#search").val().trim().length !== 0) {
+			// 	addFavorite();
+			// }
 			break;
 
 		case 'submit-button':
@@ -200,14 +193,20 @@ function openDisplay(id) {
 				$(".direction-copy").addClass("red-text");
 				$(".direction-copy").addClass("error-anim");
 			} else {
-				keyword = $('#search').val().trim();
-				ebaySearch(keyword);
-				getAmazonItemInfo(keyword);
-				getData(amazonUrl);
-				$(".shop-panels").removeClass("hidden");
-				$(".direction-copy").removeClass("red-text");
-				$(".direction-copy").removeClass("error-anim");
+                var searchterm = $('#search').val().trim();
+                ebaySearch(searchterm, ebayParse);
+                getAmazonItemInfo(searchterm, getData);
+                $("#shop-panels").removeClass("hidden");
+                $(".direction-copy").removeClass("red-text");
+                $(".direction-copy").removeClass("error-anim");
+                addMarkers();
+               google.maps.event.trigger(map, 'resize');
 			}
+            break;
+        case 'add-items':
+            $('#add-items').openModal();
+            console.log("opening add items modal");
+            break;
 
 		default:
 			console.log('how did this happen!!');
@@ -216,13 +215,14 @@ function openDisplay(id) {
 
 function addFavorite(){
 
-	var favoritesAddition = $('#search').val().trim();
+	// var favoritesAddition = $('#search').val().trim();
 	var favoritesDelete = $("<button>");
-	var favoritesItem = $("<p>");
+	var favoritesItem = $("<a href='#!' class='collection-item'>");
 
 	// assigning a number to this favorite item to make it easily identifiable. 
     favoritesItem.attr("id", "item-" + favoritesCount);
-    favoritesItem.append(" " + favoritesAddition);
+    favoritesItem.append(" " + itemName);
+    favoritesItem.append("<button id='add-item' data-itemno='"+itemNo+"'>Add Item");
 
     favoritesDelete.attr("data-favorite", favoritesCount);
     favoritesDelete.addClass("close");
@@ -248,7 +248,6 @@ $(document).ready(function(){
 // Displays pop-over for username and password
 $('#login').webuiPopover({url:'#login-form'});
 
-
 // Opens My Favorites modal with search item
 $('#favorites-click').on('click', function() {
 	console.log("clicking")
@@ -266,24 +265,23 @@ $(document.body).on('click', '.close', function(){
 
 
 $("#search-bar").on('submit', function() {
+    openDisplay("submit-button");
 
-	if ($("#search").val().trim().length <= 1) {
-		$(".direction-copy").addClass("error-anim");
-	} else {
-		var searchterm = $('#search').val().trim();
-        ebaySearch(searchterm, ebayParse);
-        getAmazonItemInfo(searchterm, getData);
-		$("#shop-panels").removeClass("hidden");
-		$(".direction-copy").removeClass("red-text");
-		$(".direction-copy").removeClass("error-anim");
-	}
+});
+
+$(document).on("click", ".add-amazon", function() {
+    openDisplay("favorites-modal");
+    itemNo = $(this).data("itemno");
+    itemName = $(results).find("Title").eq(itemNo).text();
+    addFavorite();
 });
 
 
-
-
-
-
+$(document).on("click", "#add-item", function() {
+    $("#item-description").val($(results).find("Title").eq(itemNo).text());
+    $("#asin").val($(results).find("ASIN").eq(itemNo).text());
+    openDisplay("add-items");
+});
 
 
 }); // END OF DOCUMENT READY FUNCTION
