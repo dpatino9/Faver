@@ -47,8 +47,7 @@ function ebayParse(root) {
 	    shift:0,
 	    padding:20,
 	});
-  // html.push('</tbody></table>');
-  // document.getElementById("ebay-panel").innerHTML = html.join("");
+
 };
 
 
@@ -176,16 +175,11 @@ function ebaySearch(searchTerm, ebayParse) {
 function openDisplay(id) {
 
 	switch(id) {
-		// case 'registration-modal': 
-		// 	$('#registration-modal').openModal();
-		// 	break;
 
 		case 'favorites-modal':
 			$('#favorites-modal').openModal();
 			console.log("opening favorites modal");
-			// if ($("#search").val().trim().length !== 0) {
-			// 	addFavorite();
-			// }
+			
 			break;
 
 		case 'submit-button':
@@ -215,7 +209,6 @@ function openDisplay(id) {
 
 function addFavorite(){
 
-	// var favoritesAddition = $('#search').val().trim();
 	var favoritesDelete = $("<button>");
 	var favoritesItem = $("<a href='#!' class='collection-item'>");
 
