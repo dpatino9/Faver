@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<<<<<<< HEAD
+        <title>faver</title>
+=======
+        <title>Faver</title>
+>>>>>>> refs/remotes/origin/RealTatiana
+
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+
+        <!--Import jQuery before materialize.js-->
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <meta name="google-site-verification" content="lbmLrJAKqpRvtO1foPmjKvpQIvNPCz9kUq_zn9KQljE" />
+        
+        <!-- JQuery Web Pop-over -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
+        <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+
+<body>
+
+   
+    <!-- Nav Bar -->
+    <nav class="indigo">        
+        <div class="header-bar row indigo darken-4">
+        <div class="main-title">
+<<<<<<< HEAD
+            <div class="name">faver</div>
+=======
+            <div class="name">Faver</div>
+>>>>>>> refs/remotes/origin/RealTatiana
+                <ul class="right">
+                <li><a id="favorites-click"><img src="assets/images/favorites-icon.svg" alt="My Favorites"></a></li>
+                <li><a id="login" href="#">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Image Header -->
+    <div class="image-header">
+        <div class="image-header__overlay"></div>
+    </div>
+
+    <!-- Login -->
+    <div id="login-form" class="webui-popover-content">
+        <form action="" method="post">
+            <div class="input-field">
+                <i class="material-icons left">person</i>
+                <input class="validate" type="email" placeholder="Email">
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="password">
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+    
+    <!-- END OF NAV -->
+
+
+    <div class="container main-display">
+    <!-- Page Content goes here -->
+
+        <p class="intro-copy">
+            Welcome to ShopSearch! Use the search tool below to compare low retailer prices. 
+        </p>
+
+        <!-- SEARCH BAR -->
+        <div class="row">
+            <div class="col s12"></div>
+            <nav>
+<<<<<<< HEAD
+                <div class="nav-wrapper indigo lighten-2 main-search">
+                    <form id="search-bar" onsubmit="return false">
+=======
+                <div class="nav-wrapper grey lighten-1 main-search">
+                    <form id="search-bar" novalidate>
+>>>>>>> refs/remotes/origin/RealTatiana
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons done" id="submit-button">done</i>
+                        </div>
+                    </form>
+                </div>
+           </nav>
+        </div>
+        
+    </div> <!-- END OF MAIN CONTAINER -->
+
+
+
+
+<div class="container secondary-display">
+<!-- SEARCH TOGGLE AREA -->
+    <div class="row">
+
+        <div class="direction-copy">Search an item, or manage your Favorites.</div>
+
+        <!-- Favorites Card -->
+        <!-- <div class="col s4 offset-s4">
+
+            <div class="search-toggle modal-trigger waves-effect waves-block waves-light" id="favorites-toggle">
+
+                <div class="">
+                    <img class="activator" src="assets/images/myfavorites.svg">
+                    <p>Add to My Favorites</p>
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- My Favorites Modal Structure -->
+        <div id="favorites-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+
+                <!-- My Favorites List Structure -->
+                <h4>My Favorites</h4>
+                <p>Add your Favorite items</p>
+
+                <div id="favorites-list"></div>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+
+
+        <!-- Shop 3-Panel Divs -->
+        <div id="shop-panels" class="hidden row">
+<<<<<<< HEAD
+            <div class="col s4 shop-panel" id="amazon-panel">
+            </div>
+
+            <div class="col s4 shop-panel" id="ebay-panel">
+            </div>
+
+            <div class="col s4 shop-panel" id="firebase-panel">
+=======
+            <div class="shop-panel amazon-panel" id="amazon-panel">
+                <div class="amazon-panel__header"></div>
+
+            </div>
+
+            <div class="shop-panel ebay-panel" id="ebay-panel">
+                <div class="ebay-panel__header"></div>
+            </div>
+
+            <div class="shop-panel firebase-panel" id="firebase-panel">
+                <div class="firebase-panel__header"></div>
+>>>>>>> refs/remotes/origin/RealTatiana
+            </div>
+        </div>
+
+
+    </div> <!-- END OF SEARCH TOGGLE AREA -->
+</div> <!-- END OF SECONDARY DISPLAY -->
+
+
+    <!-- Load scripts for Amazon url-encoding-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/hmac-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256-min.js"></script>
+
+  <!-- Load firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+  <script src="js/config.js"></script>
+  <!-- JS File -->
+  <script src="js/app.js"></script>
+</body>
+
+
+
+</html>
