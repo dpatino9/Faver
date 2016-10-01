@@ -130,7 +130,7 @@
 	$(document).on("submit", "#add-listitem", function() {
 		var itemName = $("#item-description").val().trim();
 		var itemASIN = $("#asin").val().trim();
-		$("#add-item")[0].reset();
+		$("#add-listitem")[0].reset();
 
 		if(itemName != "") {
 			var updatenode = database.ref().child("users/"+uid+"/list");
@@ -144,10 +144,10 @@
 			user["location/lng"] = placeLng;
 			user["location/icon"] = placeIcon;
 			newItem.update(user);
-			show($("#map"));
 			addMarkers();
 			google.maps.event.trigger(map, 'resize');
-			displayItems();
+			$("#add-items").closeModal();
+			// displayItems();
 		}
 	}); // Add item
 
