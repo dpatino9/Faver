@@ -21,6 +21,7 @@ var ebayResults = "";
 // Callback for finding items by keyword, creating a table of results
 // window._cb_findItemsByKeywords = 
 function ebayParse(root) {
+    console.log("ran");
   var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
   // var html = [];
   // html.push('<table width="100%" border="0" cellspacing="0" cellpadding="3"><tbody>');
@@ -73,7 +74,7 @@ function ebaySearch(searchTerm, ebayParse) {
 	    // document.body.appendChild(s);
             $.ajax({url: url, method: "GET"}).done(function(response) {
                 ebayResults = response;
-                // console.log(response);
+                console.log(response);
                 // var responseObject = JSON.parse(response);
                 // console.log(responseObject);
                 ebayParse(JSON.parse(response));
@@ -167,6 +168,31 @@ function ebaySearch(searchTerm, ebayParse) {
         getData(amazonUrl, displayData);
     }
 
+<<<<<<< HEAD
+=======
+	}
+
+    function displayData(data,i,j) {
+        $("#amazon-panel").empty();
+        $("#amazon-panel").append($("<div class='shop-panel__header'><img src=\"assets/images/amazonlogo.svg\" /></div>"))
+        var carousel = $("<div class='carousel shop-carousel'>");
+        for(i; i<j; i++) {
+        	var carouselItem = $("<a class='carousel-item'>");
+        	var carouselCard = $("<div class='card'>");
+            carouselCard.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='"+$(data).find("MediumImage URL").eq(i).text()+"'>")
+            carouselCard.append("<div class='card-content'><p>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text())
+        	carouselItem.append(carouselCard);
+            carousel.append(carouselItem);
+        }
+
+        $("#amazon-panel").append(carousel);
+        $('.carousel').carousel({
+            dist:0,
+            shift:0,
+            padding:20,
+      	});
+    }
+>>>>>>> refs/remotes/origin/RealTatiana
 
 
 
@@ -258,20 +284,32 @@ $(document.body).on('click', '.close', function(){
 });
 
 
+// Search bar function
+$("#search-bar").on('submit', function(event) {
 
+	event.preventDefault();
 
+<<<<<<< HEAD
 $("#search-bar").on('submit', function() {
-
+	// openDisplay("shop-panels");
+	var searchterm = $("#search").val();
+    ebaySearch(searchterm, ebayParse);
+    getAmazonItemInfo(searchterm, getData);
+    $("#shop-panels").removeClass("hidden");
+=======
 	if ($("#search").val().trim().length <= 1) {
 		$(".direction-copy").addClass("error-anim");
 	} else {
-		var searchterm = $('#search').val().trim();
-        ebaySearch(searchterm, ebayParse);
-        getAmazonItemInfo(searchterm, getData);
+		var keyword = $('#search').val().trim();
+		ebaySearch(keyword);
+		getAmazonItemInfo(keyword);
+		getData(amazonUrl);
 		$("#shop-panels").removeClass("hidden");
 		$(".direction-copy").removeClass("red-text");
 		$(".direction-copy").removeClass("error-anim");
 	}
+	// $("#search").val("");
+>>>>>>> refs/remotes/origin/RealTatiana
 });
 
 
@@ -281,4 +319,4 @@ $("#search-bar").on('submit', function() {
 
 
 
-}); // END OF DOCUMENT READY FUNCTION
+}) // END OF DOCUMENT READY FUNCTION
