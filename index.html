@@ -23,6 +23,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
         <script src="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js"></script>
 
+        <!-- Google maps api -->
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWJnUz-1fZ9d5kl1xnzkE-I1Ouy5PXvfM&libraries=places"
+         async defer></script>  
+
         <link rel="stylesheet" href="css/style.css">
 
     </head>
@@ -35,9 +39,9 @@
         <div class="main-title">
             <div class="name">Faver</div>
                 <ul class="right">
-                <li><a id="favorites-click"><img src="assets/images/favorites-icon.svg" alt="My Favorites"></a></li>
-                <li><a id="login" href="#">Login</a></li>
-            </ul>
+                    <li><a id="favorites-click"><img src="assets/images/favorites-icon.svg" alt="My Favorites"></a></li>
+                    <li><a id="login" href="#">Sign In</a></li>
+                </ul>
         </div>
     </nav>
 
@@ -47,19 +51,43 @@
     </div>
 
     <!-- Login -->
-    <div id="login-form" class="webui-popover-content">
-        <form action="" method="post">
-            <div class="input-field">
-                <i class="material-icons left">person</i>
-                <input class="validate" type="email" placeholder="Email">
-            </div>
-            <div class="input-field">
-                <input type="password" placeholder="password">
-            </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Login
-                <i class="material-icons right">send</i>
-            </button>
-        </form>
+    <div id="login-form" class="webui-popover-content center-align">
+      <form class="login-form" onsubmit="return false">
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">person outline</i>
+            <input class="validate" id="email" type="email">
+            <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock outline</i>
+            <input id="password" type="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">          
+          <div class="input-field col s12 m12 l12  login-text">
+              <input type="checkbox" id="remember-me" />
+              <label for="remember-me">Remember me</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button type="submit" class="btn waves-effect waves-light col s12 indigo">Sign In</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="#" id="register">Register Now!</a></p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="#">Forgot password?</a></p>
+          </div>          
+        </div>
+
+      </form>
     </div>
     
     <!-- END OF NAV -->
@@ -120,14 +148,36 @@
                 <h4>My Favorites</h4>
                 <p>Add your Favorite items</p>
 
-                <div id="favorites-list"></div>
+                <div class="collection" id="favorites-list">
+                    <a href="#!" class="collection-item">
+                    </a>
+                </div>
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
             </div>
         </div>
-
+      <!-- Modal Structure -->
+      <div id="add-items" class="modal bottom-sheet">
+        <div class="modal-content">
+          <h4>Add an item</h4>
+    <form id="add-listitem" onsubmit="return false">
+        <input type="text" id="item-description" placeholder="Product Name">
+        <input type="text" id="asin" placeholder="Amazon ASIN">
+        <input type="url" id="item-image-url" placeholder="http://image.jpg">
+        <input type="url" id="ebay-listing" placeholder="http://ebay.com/listing">
+        <button type="button" id="locations">Add a location</button>
+        <input type="text" id="placeName" placeholder="Location" class="hide">
+        <input type="text" id="placeAddress" placeholder="Address" class="hide">
+        <!-- <input type="file"> -->
+        <button type="submit">Add Item</button>
+    </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
 
         <!-- Shop 3-Panel Divs -->
         <div id="shop-panels" class="hidden row">
@@ -139,6 +189,8 @@
 
             <div class="shop-panel firebase-panel" id="firebase-panel">
                 <div class="firebase-panel__header"></div>
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box"><button type="button" id="geolocate" class="">Find Me</button>
+                <div id="map"></div>
             </div>
         </div>
 
@@ -154,10 +206,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/sha256-min.js"></script>
 
   <!-- Load firebase -->
-  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
   <script src="js/config.js"></script>
   <!-- JS File -->
   <script src="js/app.js"></script>
+  <script src="js/register.js"></script>
+  <script src="js/map.js"></script>
 </body>
 
 
