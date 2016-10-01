@@ -142,6 +142,8 @@ $(document).ready(function() {
           $("#pac-input").blur();
           $("#pac-input").val("");
           $("#pac-input").focus();
+          $("#add-items").closeModal();
+          $("#favorites-modal").closeModal();
     // show($("#map"));
     // show($("#pac-input"));
     // show($("#geolocate"));
@@ -157,6 +159,7 @@ $(document).ready(function() {
             // hide($("#map"));
             // hide($("#pac-input"));
             // hide($("#geolocate"));
+            openDisplay('add-items');
             $("#placeName").val(placeName);
             $("#placeAddress").val(placeAddress);
             show($("#placeName"));
