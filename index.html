@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ShopSearch</title>
+        <title>faver</title>
 
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,8 +15,9 @@
         <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 
         <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <meta name="google-site-verification" content="lbmLrJAKqpRvtO1foPmjKvpQIvNPCz9kUq_zn9KQljE" />
         
         <!-- JQuery Web Pop-over -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css">
@@ -34,7 +35,7 @@
     <nav class="indigo">        
         <div class="header-bar row indigo">
         <div class="main-title">
-            <div class="name">ShopSearch</div>
+            <div class="name">faver</div>
                 <ul class="right">
                 <li><a id="login" href="#">Login</a></li>
             </ul>
@@ -67,7 +68,7 @@
             <div class="col s12"></div>
             <nav>
                 <div class="nav-wrapper indigo lighten-2 main-search">
-                    <form id="search-bar">
+                    <form id="search-bar" onsubmit="return false">
                         <div class="input-field">
                             <input id="search" type="search" required>
                             <label for="search"><i class="material-icons">search</i></label>
@@ -129,15 +130,12 @@
         <!-- Shop 3-Panel Divs -->
         <div id="shop-panels" class="hidden row">
             <div class="col s4 shop-panel" id="amazon-panel">
-                Amazon Content Here: 
             </div>
 
             <div class="col s4 shop-panel" id="ebay-panel">
-                eBay Content Here:
             </div>
 
             <div class="col s4 shop-panel" id="firebase-panel">
-                Local Retailer Content Here: 
             </div>
         </div>
 
