@@ -23,7 +23,7 @@ var ebayResults = "";
 function ebayParse(root) {
 	var items = root.findItemsByKeywordsResponse[0].searchResult[0].item || [];
     $("#ebay-panel").empty();
-    $("#ebay-panel").append($("<div class='shop-panel__header'><img src=\"assets/images/ebaylogo.svg\" /></div>"))
+    $("#ebay-panel").append($("<div class='shop-panel__header valign center-block'><img src='assets/images/ebaylogo.svg' /></div>"))
     var carousel = $("<div class='carousel shop-carousel'>");
 	for (var i = 0; i < items.length; ++i) {
 		var item     = items[i];
@@ -33,9 +33,9 @@ function ebayParse(root) {
 
 		if (null != title && null != viewitem) {
         	var carouselItem = $("<a class='carousel-item'>");
-        	var carouselCard = $("<div class='card'>");
+        	var carouselCard = $("<div class='card hoverable'>");
             carouselCard.append("<div class='card-image'><a href='"+viewitem+"' target='_blank'><img class='responsive-img' src='"+pic+"'>")
-            carouselCard.append("<div class='card-content'><p>"+title+"<p>$"+item.sellingStatus[0].currentPrice[0].__value__)
+            carouselCard.append("<div class='card-content'><a href='"+viewitem+"' target='_blank'><p>"+title+"<p>$"+item.sellingStatus[0].currentPrice[0].__value__)
         	carouselItem.append(carouselCard);
             carousel.append(carouselItem);
 		}
@@ -117,13 +117,13 @@ function ebaySearch(searchTerm, ebayParse) {
     }
     function displayData(data,i,j) {
         $("#amazon-panel").empty();
-        $("#amazon-panel").append($("<div class='shop-panel__header'><img src=\"assets/images/amazonlogo.svg\" /></div>"))
+        $("#amazon-panel").append($("<div class='shop-panel__header valign center-block'><img src='assets/images/amazonlogo.svg' /></div>"))
         var carousel = $("<div class='carousel shop-carousel'>");
         for(i; i<j; i++) {
         	var carouselItem = $("<a class='carousel-item'>");
-        	var carouselCard = $("<div class='card'>");
+        	var carouselCard = $("<div class='card hoverable'>");
             carouselCard.append("<div class='card-image'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><img src='"+$(data).find("MediumImage URL").eq(i).text()+"'>")
-            carouselCard.append("<div class='card-content'><p>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text())
+            carouselCard.append("<div class='card-content'><a href='"+$(data).find("DetailPageURL").eq(i).text()+"' target='_blank'><p>"+$(data).find("Title").eq(i).text()+"<p>"+$(data).find("FormattedPrice").eq(i).text())
         	carouselItem.append(carouselCard);
             carousel.append(carouselItem);
         }
