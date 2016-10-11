@@ -18,7 +18,7 @@
   Where to find it?
   ------------
 
-  	Faver can be found at: www.faver.com
+  	Faver can be found at: www.faver.shop
 
 
   How was it made? 
