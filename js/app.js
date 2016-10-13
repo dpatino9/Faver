@@ -137,9 +137,9 @@ function ebaySearch(searchTerm, ebayParse) {
     }
 
     function getAmazonItemInfo(keyword, getData) {
-        var PrivateKey = "/nmngLta6ifXG0RjOzoICN0cMqRlUp9m9LwlIrOj";
-        var PublicKey = "AKIAIGNV6AJOIUYCURCA";
-        var AssociateTag = "shopsmart093-20";
+        var PrivateKey = privatekey;
+        var PublicKey = publickey;
+        var AssociateTag = associatetag;
 
         var parameters = [];
         parameters.push("AWSAccessKeyId=" + PublicKey);
